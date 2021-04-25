@@ -1,4 +1,7 @@
-const http = require('http')
+const express = require('express')
+const app = express()
+
+var fecha= new Date();
 
 let persons = [
   {
@@ -23,10 +26,24 @@ let persons = [
   }
 ]
 
-const app = http.createServer((request, response) => {
-  response.writeHead(200, { 'Content-Type': 'application/json' })
-  response.end(JSON.stringify(persons))
+app.get('/',(request,response) => {
+  response.send('<h1>Bienvenidos a mi pagina con NODEJS</h1>')
 })
+
+app.get('/info',(request,response) => {
+  response.send('<h3> Phonebook has info for '+persons.length +' people</h3>'+
+  '<h3>'+fecha+'</h3>')
+})
+
+app.get('/api/personas',(request,response) => {
+  response.json(persons)
+})
+
+
+// const app = http.createServer((request, response) => {
+//   response.writeHead(200, { 'Content-Type': 'application/json' })
+//   response.end(JSON.stringify(persons))
+// })
 
 const PORT = 3001
 app.listen(PORT)
