@@ -47,8 +47,18 @@ app.get('/api/personas/:id',(request,response) => {
     response.json(person)
   }else{
     response.send('<h3>no existe persona con el id enviado</h3>')
-  }
+  } 
 })
+
+app.delete('/api/personas/:id',(request,response) => {
+  const id = Number(request.params.id)
+  persons = persons.filter(person => person.id !== id)
+
+  response.status(204).end()
+
+})
+
+
 
 
 // const app = http.createServer((request, response) => {
