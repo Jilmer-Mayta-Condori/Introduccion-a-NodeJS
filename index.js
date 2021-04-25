@@ -39,6 +39,17 @@ app.get('/api/personas',(request,response) => {
   response.json(persons)
 })
 
+app.get('/api/personas/:id',(request,response) => {
+  const id = Number(request.params.id)
+  const person = persons.find(person => person.id === id)
+
+  if (person){
+    response.json(person)
+  }else{
+    response.send('<h3>no existe persona con el id enviado</h3>')
+  }
+})
+
 
 // const app = http.createServer((request, response) => {
 //   response.writeHead(200, { 'Content-Type': 'application/json' })
