@@ -81,6 +81,44 @@ app.post('/api/personas',(request,response) => {
   const nombre = request.body.name
   const numero = request.body.number
   const id = Math.floor(Math.random() * (10000 - 1) + 10000)
+  let contador = 0
+  
+  if (!nombre) {
+    contador = 1
+  }
+  if (!numero) {
+    contador = 2
+  }
+  if (!numero && !nombre) {
+    contador = 3
+  }
+  if (nombre){
+    persons.forEach(element => {
+      if(element.name === nombre){
+        contador = 4
+      }
+    });
+  }
+
+  switch(contador){
+    case 1:
+      return response.status(400).json({ 
+        NameError: 'el nombre no puede estar vacio' 
+      })
+    case 2:
+      return response.status(400).json({ 
+        NumberError: 'el numero no puede estar vacio' 
+      })
+    case 3:
+      return response.status(400).json({ 
+        NameError: 'el nombre no puede estar vacio',
+        NumberError: 'el numero no puede estar vacio' 
+      })
+    case 4:
+      return response.status(400).json({ 
+        NameError: 'el nombre ingresado ya se encuentra en los registro'
+      })
+  }
 
   const newPerson = {
     id: id,
