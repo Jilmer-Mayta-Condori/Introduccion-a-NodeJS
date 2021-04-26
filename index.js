@@ -1,4 +1,4 @@
-const express = require('express')
+import express from 'express'
 const app = express()
 const bodyParser = require('body-parser');
 
@@ -130,9 +130,6 @@ app.post('/api/personas',(request,response) => {
   response.redirect('/api/personas')
 
 })
-
-
-
 
 // const app = http.createServer((request, response) => {
 //   response.writeHead(200, { 'Content-Type': 'application/json' })
