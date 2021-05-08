@@ -156,6 +156,7 @@ app.use((req, response, next) => {
 //   response.end(JSON.stringify(persons))
 // })
 
-const PORT = 3001
+const PORT = process.env.PORT
+
 app.listen(PORT)
 console.log(`Server running on port ${PORT}`)
